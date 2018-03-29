@@ -11,6 +11,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.IO;
+using System.Diagnostics;
 
 namespace KassaRakendus
 {
@@ -22,6 +24,77 @@ namespace KassaRakendus
         public MainWindow()
         {
             InitializeComponent();
+        }
+
+        private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
+        }
+
+        public void ListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            //ostukorv
+            this.InitializeComponent();
+
+            // lisab veerud
+            var gridView = new GridView();
+            this.listView.View = gridView;
+            gridView.Columns.Add(new GridViewColumn
+            {
+                Header = "Hind",
+                DisplayMemberBinding = new Binding("Hind")
+            });
+            gridView.Columns.Add(new GridViewColumn
+            {
+                Header = "Toode",
+                DisplayMemberBinding = new Binding("Toode")
+            });
+            gridView.Columns.Add(new GridViewColumn
+            {
+                Header = "Kogus",
+                DisplayMemberBinding = new Binding("Kogus")
+            });
+
+
+           
+        }
+
+        private void TextBox_TextChanged_1(object sender, TextChangedEventArgs e)
+        {
+            //hind
+        }
+
+        private void TextBox_TextChanged_2(object sender, TextChangedEventArgs e)
+        {
+            //kogus
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            //lisa
+            this.listView.Items.Add(new MyItem { Toode = NimetusBox.Text, Hind = int.Parse(HindBox.Text), Kogus = int.Parse(KogusBox.Text) });
+        }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            //eemalda
+            var selected = listView.SelectedItems.Cast<Object>().ToArray();
+            foreach (var item in selected)
+            {
+                listView.Items.Remove(item);
+            }
+        }
+
+        private void Button_Click_2(object sender, RoutedEventArgs e)
+        {
+            //osta
+
+
+        }
+
+        private void Button_Click_3(object sender, RoutedEventArgs e)
+        {
+            Environment.Exit(420);
         }
     }
 }
