@@ -88,8 +88,8 @@ namespace KassaRakendus
         private void Button_Click_2(object sender, RoutedEventArgs e)
         {
             //osta
-
-
+            var Tšekk = new Tšekk();
+            Tšekk.Print();
         }
 
         private void Button_Click_3(object sender, RoutedEventArgs e)
