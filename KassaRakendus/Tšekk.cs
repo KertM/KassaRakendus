@@ -11,6 +11,7 @@ namespace KassaRakendus
     {
         public void Print(List<MyItem> list)
         {
+
             List<string> Tekst = new List<string>();
             double kokku = 0;
             foreach (var item in list)
@@ -18,7 +19,7 @@ namespace KassaRakendus
                 Tekst.Add(string.Format("{0}x {1} - €{2}", item.Kogus, item.Toode, item.Hind));
                 kokku += item.Hind * item.Kogus;
             }
-
+            //File.WriteAllLines("Tšekk.txt", Tekst);
             File.AppendAllText("Tšekk.txt", "______________________" + Environment.NewLine + "Kokku: €" + kokku);
 
             Process.Start("Tšekk.txt");
@@ -30,7 +31,7 @@ namespace KassaRakendus
             //System.IO.File.WriteAllLines("WriteLines.txt", lines);
 
 
-            Process.Start("WriteLines.txt");
+
         }
     }
 }

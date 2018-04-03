@@ -24,17 +24,22 @@ namespace KassaRakendus
         public MainWindow()
         {
             InitializeComponent();
+            Tekst = new List<MyItem>();
         }
 
         private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
 
         }
+        public List<string> OstukorvList { get; private set; }
+        public List<MyItem> Tekst { get; private set; }
 
         public void ListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             //ostukorv
             this.InitializeComponent();
+
+            
 
             // lisab veerud
             var gridView = new GridView();
@@ -43,6 +48,7 @@ namespace KassaRakendus
             {
                 Header = "Hind",
                 DisplayMemberBinding = new Binding("Hind")
+
             });
             gridView.Columns.Add(new GridViewColumn
             {
@@ -56,7 +62,7 @@ namespace KassaRakendus
             });
 
 
-           
+
         }
 
         private void TextBox_TextChanged_1(object sender, TextChangedEventArgs e)
@@ -69,10 +75,11 @@ namespace KassaRakendus
             //kogus
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        public void Button_Click(object sender, RoutedEventArgs e)
         {
             //lisa
             this.listView.Items.Add(new MyItem { Toode = NimetusBox.Text, Hind = int.Parse(HindBox.Text), Kogus = int.Parse(KogusBox.Text) });
+            Tekst.Add(new MyItem { Toode = NimetusBox.Text, Hind = int.Parse(HindBox.Text), Kogus = int.Parse(KogusBox.Text) });
         }
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
@@ -89,7 +96,7 @@ namespace KassaRakendus
         {
             //osta
             var Tšekk = new Tšekk();
-            Tšekk.Print();
+            Tšekk.Print(Tekst);
         }
 
         private void Button_Click_3(object sender, RoutedEventArgs e)
