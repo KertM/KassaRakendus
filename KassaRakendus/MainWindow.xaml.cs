@@ -78,10 +78,17 @@ namespace KassaRakendus
         public void Button_Click(object sender, RoutedEventArgs e)
         {
             //lisa
-            this.listView.Items.Add(new MyItem { Toode = NimetusBox.Text, Hind = int.Parse(HindBox.Text), Kogus = int.Parse(KogusBox.Text) });
-            Tekst.Add(new MyItem { Toode = NimetusBox.Text, Hind = int.Parse(HindBox.Text), Kogus = int.Parse(KogusBox.Text) });
-        }
+            if (NimetusBox.Text == "")
+            {
+                MessageBox.Show("palun sisestage toode");
+            }
+            else
+            {
+                this.listView.Items.Add(new MyItem { Toode = NimetusBox.Text, Hind = int.Parse(HindBox.Text), Kogus = int.Parse(KogusBox.Text) });
+                Tekst.Add(new MyItem { Toode = NimetusBox.Text, Hind = int.Parse(HindBox.Text), Kogus = int.Parse(KogusBox.Text) });
 
+            }
+        }
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
             //eemalda
@@ -94,14 +101,24 @@ namespace KassaRakendus
 
         private void Button_Click_2(object sender, RoutedEventArgs e)
         {
-            //osta
-            var Tšekk = new Tšekk();
-            Tšekk.Print(Tekst);
+            //osta / lisab tšekki   
+
         }
 
         private void Button_Click_3(object sender, RoutedEventArgs e)
         {
             Environment.Exit(420);
+        }
+
+        private void ListView_SelectionChanged_1(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
+
+        private void Button_Click_4(object sender, RoutedEventArgs e)
+        {
+            var Tšekk = new Tšekk();
+            Tšekk.Print(Tekst);
         }
     }
 }
